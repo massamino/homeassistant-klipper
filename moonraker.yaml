@@ -40,6 +40,7 @@ rest_command:
     method: post
 
 sensor:
+  # Basic printer sensor info
   - platform: rest
     name: printer_3d_sensor
     resource: "http://<moonraker-ip>:7125/printer/objects/query?heater_bed&extruder&print_stats&toolhead&display_status&virtual_sdcard&gcode_move&filament_switch_sensor Filament"
@@ -62,6 +63,7 @@ sensor:
     #headers:
     #  x-api-key: 123456789abcdefghijklmno
 
+  # Basic printer info
   - platform: rest
     name: printer_3d_info
     scan_interval: 1
@@ -76,6 +78,7 @@ sensor:
     value_template: >-
       {{ 'OK' if ('result' in value_json) else None }}
 
+  # Build sensors for requested data
   - platform: template
     sensors:
       3d_printer_hotend_target:
